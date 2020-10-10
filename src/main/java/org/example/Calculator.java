@@ -1,6 +1,6 @@
 package org.example;
 
-import javax.swing.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +29,9 @@ public class Calculator {
             //i.e. string "10 cm + 2 mm" will result into an array of substrings {"10", "cm", "+", "2", "mm"}
             String[] s = ex.split(" ");
 
+            //find next operand and keep the result of its operators in "tmp"
+            //tmp will be the left operator for the next operand;
+            //but first initialize tmp with the first number from the expression
             tmp = convertUnit(Double.parseDouble(s[0]), s[1], unit);
             for (int i = 2; i < s.length; i++) {
                 if ( s[i].equals("+")) {
@@ -39,7 +42,8 @@ public class Calculator {
                     }
             }
 
-            System.out.println(retMessage.concat(String.valueOf(tmp) + unit));
+            //System.out.println(retMessage.concat(String.valueOf(tmp) + unit));
+            retMessage = retMessage.concat(String.valueOf(tmp) + " " + unit);
         } else {
             retMessage = "Given expression contains invalid operands.";
         }
